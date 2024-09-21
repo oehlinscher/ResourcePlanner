@@ -1,0 +1,29 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+
+@base_url=https://localhost:7124/api
+
+POST {{base_url}}/resources
+Content-Type: application/json
+{
+    "name": "Employee 1"
+}
+
+###
+
+GET {{base_url}}/resources
+
+###
+
+PUT {{base_url}}/resources/1
+Content-Type: application/json
+{
+    "name": "Employee 117"
+}
+
+###
+
+GET {{base_url}}/resources/2
+
+### 
+
+DELETE {{base_url}}/resources/2
