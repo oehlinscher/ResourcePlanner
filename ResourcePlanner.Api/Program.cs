@@ -45,8 +45,6 @@ public class Program
         }
 
         app.MapDefaultEndpoints();
-
-        app.MapGet("/", () => "Hello World!");
         app.MapControllers();
 
         app.Run();
