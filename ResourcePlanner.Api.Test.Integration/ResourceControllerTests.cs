@@ -118,5 +118,21 @@ namespace ResourcePlanner.Api.Test.Integration
             // Assert
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
         }
+
+        [Fact]
+        public async Task UpdateResource_ReturnsNotFound_WhenResourceDoesNotExist()
+        {
+            // Arrange
+
+            // Act
+            UpdateResourceRequestDTO updateRequest = new()
+            {
+                Name = "Update"
+            };
+            var response = await _client.PutAsJsonAsync($"/api/resources/99", updateRequest);
+
+            // Assert
+            response.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
+        }
     }
 }
