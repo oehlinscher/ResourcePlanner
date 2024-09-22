@@ -22,6 +22,13 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dotnet-coverage
       run: dotnet tool install --global dotnet-coverage
+    - name: Cache .NET workloads
+      uses: actions/cache@v3
+      with:
+        path: ~/.dotnet
+        key: ${{ runner.os }}-dotnet-workloads-${{ hashFiles('**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-dotnet-workloads-
     - name: Restore workload
       run: dotnet workload restore
     - name: Restore dependencies
