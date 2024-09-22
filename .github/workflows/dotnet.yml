@@ -20,6 +20,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: Restore dotnet-coverage
+      run: dotnet tool install --global dotnet-coverage
     - name: Restore workload
       run: dotnet workload restore
     - name: Restore dependencies
@@ -62,6 +64,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        .\.sonar\scanner\dotnet-sonarscanner begin /k:"oehlinscher_ResourcePlanner" /o:"oehlinscher" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-        dotnet build
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"oehlinscher_ResourcePlanner" /o:"oehlinscher" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+        dotnet build --no-incremental
+        dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
