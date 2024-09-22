@@ -60,12 +60,12 @@ namespace ResourcePlanner.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> UpdateResource(int id, [FromBody] UpdateResourceRequestDTO updateResourceRequestDTO, [FromServices] IUnitOfWork uow)
         {
-
-            Resource resource = new()
+            var resource = await uow.Resources.GetByIdAsync(id);
+            if (resource == null)
             {
-                Id = id,
-                Name = updateResourceRequestDTO.Name
-            };
+                return NotFound();
+            }
+            resource.Name = updateResourceRequestDTO.Name;
             uow.Resources.Update(resource);
             await uow.CompleteAsync();
             return NoContent(); 

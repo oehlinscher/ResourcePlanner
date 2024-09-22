@@ -96,5 +96,27 @@ namespace ResourcePlanner.Api.Test.Integration
             // Assert
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
         }
+
+        [Fact]
+        public async Task UpdateResource_ReturnsNoContent_WhenResourceExists()
+        {
+            // Arrange
+            CreateResourceRequestDTO request = new()
+            {
+                Name = "Resource 1"
+            };
+            var createResponse = await _client.PostAsJsonAsync("/api/resources", request);
+            var createResponseContent = JsonSerializer.Deserialize<CreateResourceReponseDTO>(await createResponse.Content.ReadAsStringAsync(), _jsonSerializerOptions);
+
+            // Act
+            UpdateResourceRequestDTO updateRequest = new()
+            {
+                Name = "Update"
+            };
+            var response = await _client.PutAsJsonAsync($"/api/resources/{createResponseContent.Id}", updateRequest);
+
+            // Assert
+            response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
+        }
     }
 }
