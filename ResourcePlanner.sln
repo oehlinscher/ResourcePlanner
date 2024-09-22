@@ -11,11 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourcePlanner.ServiceDefa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourcePlanner.Api", "ResourcePlanner.Api\ResourcePlanner.Api.csproj", "{2934B47D-5EC9-486C-9D77-6BDF51E88529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourcePlanner.Api.Test.Integration", "ResourcePlanner.Api.Test.Integration\ResourcePlanner.Api.Test.Integration.csproj", "{D145B862-E98B-4362-872D-DCB58CAB0FDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourcePlanner.Api.Test.Integration", "ResourcePlanner.Api.Test.Integration\ResourcePlanner.Api.Test.Integration.csproj", "{D145B862-E98B-4362-872D-DCB58CAB0FDD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE6079BE-5AA9-4235-A12D-F786A941222A}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k6", "k6", "{AF3AF612-B6AB-41E7-A7F7-2BCBB006D022}"
+	ProjectSection(SolutionItems) = preProject
+		k6\load_testing.js = k6\load_testing.js
 	EndProjectSection
 EndProject
 Global
