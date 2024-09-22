@@ -113,7 +113,7 @@ namespace ResourcePlanner.Api.Test.Integration
             {
                 Name = "Update"
             };
-            var response = await _client.PutAsJsonAsync($"/api/resources/{createResponseContent.Id}", updateRequest);
+            var response = await _client.PutAsJsonAsync($"/api/resources/{createResponseContent!.Id}", updateRequest);
 
             // Assert
             response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
